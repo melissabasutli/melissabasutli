@@ -1,6 +1,6 @@
 /* General page styling */
 body {
-  background: linear-gradient(to bottom, #f3e5f5, #ffffff); /* lavender fading into white */
+  background: linear-gradient(to bottom, #c468d2, #8818a1); /* lavender fading into white */
   font-family: 'Segoe UI', Arial, sans-serif;
   color: #333;
   margin: 0;
@@ -15,7 +15,7 @@ h1 {
   font-family: "Georgia", serif;
   padding: 20px;
   margin: 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* subtle shadow under header */
+  box-shadow: 0 4px 6px rgba(136, 35, 179, 0.2); /* subtle shadow under header */
 }
 
 h2 {
@@ -43,7 +43,7 @@ nav {
 }
 
 nav a {
-  color: #fff;
+  color: #7c19a3;
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
@@ -52,7 +52,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #d1c4e9; /* lighter purple hover */
+  color: #8017cc; /* lighter purple hover */
 }
 
 /* Images */
@@ -98,8 +98,17 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(to right, #7b3fb3, #9c4dcc); /* brighter purple hover */
-  transform: scale(1.05); /* slight zoom effect */
+ button {
+  background-color: #5a2d82; /* purple */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #7b3fb3; /* brighter purple on hover */
+}
 }
 
 /* Journal box */
