@@ -128,6 +128,20 @@ table {
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+#tip {
+  font-size: 1.1em;
+  color: #4a2c6f;
+  text-align: center;
+  margin: 15px auto;
+  width: 70%;
+}
+blockquote {
+  font-style: italic;
+  color: #5a2d82;
+  text-align: center;
+  margin: 20px auto;
+  width: 70%;
+}
 
 th, td {
   border: 1px solid #ccc;
