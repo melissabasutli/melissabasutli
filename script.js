@@ -1,3 +1,7 @@
+// -----------------------------
+// Calming Quotes and Self-Care Tips
+// -----------------------------
+
 // Array of calming quotes
 const quotes = [
   "Taking time to reflect is the first step toward growth.",
@@ -28,36 +32,9 @@ function showTip() {
   document.getElementById("tip").innerText = tips[randomIndex];
 }
 
-// Run when page loads
-window.onload = function() {
-  showQuote();
-  showTip();
-};
-// Mood Tracker
-const moodForm = document.getElementById('moodForm');
-const moodList = document.getElementById('moodList');
-const overviewTable = document.getElementById('overviewTable');
-
-// Journal Tracker
-const saveJournalBtn = document.getElementById('saveJournal');
-const journalList = document.getElementById('journalList');
-
-// Load saved data on page load
-window.onload = () => {
-  const savedMoods = JSON.parse(localStorage.getItem('moods')) || [];
-  savedMoods.forEach(entry => {
-    addMood(entry);
-    const [date, mood] = entry.split(" - ");
-    addOverviewRow(date, mood, "");
-  });
-
-  const savedJournals = JSON.parse(localStorage.getItem('journals')) || [];
-  savedJournals.forEach(entry => {
-    addJournal(entry);
-    const [date, note] = entry.split(" - ");
-    addOverviewRow(date, "", note);
-  });
-};
+// -----------------------------
+// Mood & Journal Tracker (Overview Table Only)
+// -----------------------------
 
 const moodForm = document.getElementById('moodForm');
 const saveJournalBtn = document.getElementById('saveJournal');
@@ -65,6 +42,9 @@ const overviewTable = document.getElementById('overviewTable');
 
 // Load saved entries on page load
 window.onload = () => {
+  showQuote();
+  showTip();
+
   const savedEntries = JSON.parse(localStorage.getItem('entries')) || [];
   savedEntries.forEach(entry => addOverviewRow(entry.date, entry.mood, entry.note));
 };
