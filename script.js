@@ -59,48 +59,44 @@ window.onload = () => {
   });
 };
 
+const moodForm = document.getElementById('moodForm');
+const saveJournalBtn = document.getElementById('saveJournal');
+const overviewTable = document.getElementById('overviewTable');
+
+// Load saved entries on page load
+window.onload = () => {
+  const savedEntries = JSON.parse(localStorage.getItem('entries')) || [];
+  savedEntries.forEach(entry => addOverviewRow(entry.date, entry.mood, entry.note));
+};
+
 // Save mood
 moodForm.addEventListener('submit', e => {
   e.preventDefault();
   const mood = document.getElementById('mood').value;
-  const entry = `${new Date().toLocaleDateString()} - ${mood}`;
-  const savedMoods = JSON.parse(localStorage.getItem('moods')) || [];
-  savedMoods.push(entry);
-  localStorage.setItem('moods', JSON.stringify(savedMoods));
-  addMood(entry);
-  const [date, moodText] = entry.split(" - ");
-  addOverviewRow(date, moodText, "");
+  const entry = { date: new Date().toLocaleDateString(), mood: mood, note: "" };
+
+  const savedEntries = JSON.parse(localStorage.getItem('entries')) || [];
+  savedEntries.push(entry);
+  localStorage.setItem('entries', JSON.stringify(savedEntries));
+
+  addOverviewRow(entry.date, entry.mood, entry.note);
   moodForm.reset();
 });
-
-function addMood(entry) {
-  const li = document.createElement('li');
-  li.textContent = entry;
-  li.className = "list-group-item";
-  moodList.appendChild(li);
-}
 
 // Save journal
 saveJournalBtn.addEventListener('click', () => {
   const text = document.getElementById('journalEntry').value;
   if (text.trim() !== "") {
-    const entry = `${new Date().toLocaleDateString()} - ${text}`;
-    const savedJournals = JSON.parse(localStorage.getItem('journals')) || [];
-    savedJournals.push(entry);
-    localStorage.setItem('journals', JSON.stringify(savedJournals));
-    addJournal(entry);
-    const [date, note] = entry.split(" - ");
-    addOverviewRow(date, "", note);
+    const entry = { date: new Date().toLocaleDateString(), mood: "", note: text };
+
+    const savedEntries = JSON.parse(localStorage.getItem('entries')) || [];
+    savedEntries.push(entry);
+    localStorage.setItem('entries', JSON.stringify(savedEntries));
+
+    addOverviewRow(entry.date, entry.mood, entry.note);
     document.getElementById('journalEntry').value = "";
   }
 });
-
-function addJournal(entry) {
-  const li = document.createElement('li');
-  li.textContent = entry;
-  li.className = "list-group-item";
-  journalList.appendChild(li);
-}
 
 // Add row to overview table
 function addOverviewRow(date, mood, note) {
