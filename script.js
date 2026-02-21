@@ -2,7 +2,6 @@
 // Calming Quotes and Self-Care Tips
 // -----------------------------
 
-// Array of calming quotes
 const quotes = [
   "Taking time to reflect is the first step toward growth.",
   "Every small step counts toward healing.",
@@ -11,7 +10,6 @@ const quotes = [
   "Peace begins with a pause."
 ];
 
-// Array of self-care tips
 const tips = [
   "Take three deep breaths and notice how your body feels.",
   "Write down one thing you’re grateful for today.",
@@ -20,13 +18,11 @@ const tips = [
   "Drink a glass of water slowly and mindfully."
 ];
 
-// Pick a random quote
 function showQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   document.getElementById("quote").innerText = quotes[randomIndex];
 }
 
-// Pick a random tip
 function showTip() {
   const randomIndex = Math.floor(Math.random() * tips.length);
   document.getElementById("tip").innerText = tips[randomIndex];
@@ -40,16 +36,18 @@ const moodForm = document.getElementById('moodForm');
 const saveJournalBtn = document.getElementById('saveJournal');
 const overviewTable = document.getElementById('overviewTable');
 
-// Load saved entries on page load
+// Run when page loads
 window.onload = () => {
+  // Show a random quote and tip
   showQuote();
   showTip();
 
+  // Load saved entries into the overview table
   const savedEntries = JSON.parse(localStorage.getItem('entries')) || [];
   savedEntries.forEach(entry => addOverviewRow(entry.date, entry.mood, entry.note));
 };
 
-// Save mood
+// Save mood entry
 moodForm.addEventListener('submit', e => {
   e.preventDefault();
   const mood = document.getElementById('mood').value;
@@ -63,7 +61,7 @@ moodForm.addEventListener('submit', e => {
   moodForm.reset();
 });
 
-// Save journal
+// Save journal entry
 saveJournalBtn.addEventListener('click', () => {
   const text = document.getElementById('journalEntry').value;
   if (text.trim() !== "") {
